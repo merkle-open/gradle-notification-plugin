@@ -1,0 +1,25 @@
+name: Publish Notification Plugin
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Publish
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2 # https://github.com/actions/checkout
+        with:
+          ref: 'master'
+      - run: git status
+      - run: git fetch --prune --unshallow
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - run: chmod +x gradlew
+      - run: ./gradlew release -Dorg.ajoberstar.grgit.auth.username=${GITHUB_TOKEN} -Dorg.ajoberstar.grgit.auth.password -Dgradle.publish.key=${GRADLE_PUBLISH_KEY} -Dgradle.publish.secret=${GRADLE_PUBLISH_SECRET} --info --stacktrace
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GRADLE_PUBLISH_KEY: ${{ secrets.GRADLE_PUBLISH_KEY }}
+          GRADLE_PUBLISH_SECRET: ${{ secrets.GRADLE_PUBLISH_SECRET }}

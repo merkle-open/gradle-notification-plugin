@@ -1,0 +1,18 @@
+{{headline}}
+
+Environment: {{targetEnv}}
+Old Version: {{oldVersion}}
+New Version: {{version}}
+
+Changes:
+========
+{{#changes}}
+{{value}}
+{{/changes}}
+
+View in Jira: {{jiraUrl}}
+Tickets: {{issuesUrl}}/?jql=key%20in%20({{#issues}}{{{value}}}{{^last}},{{/last}}{{/issues}})
+
+{{#issues}}
+{{jiraUrl}}/browse/{{{value}}}
+{{/issues}}
