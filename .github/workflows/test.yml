@@ -1,0 +1,18 @@
+name: Test
+on: push
+
+jobs:
+  build:
+    name: test branch
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2 # https://github.com/actions/checkout
+        with:
+          ref: 'master'
+      - run: git status
+      - run: git fetch --prune --unshallow
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - run: chmod +x gradlew
+      - run: ./gradlew test --info --stacktrace
