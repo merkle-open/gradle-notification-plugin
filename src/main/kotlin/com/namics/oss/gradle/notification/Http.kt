@@ -3,6 +3,7 @@ package com.namics.oss.gradle.notification
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonConfiguration
 import kotlinx.serialization.json.JsonElement
+import org.gradle.api.logging.Logging
 import java.net.URI
 import java.net.http.HttpClient
 import java.net.http.HttpRequest
@@ -28,8 +29,8 @@ class Http(val authHeader: String? = null) {
         override fun checkClientTrusted(certs: Array<X509Certificate>, authType: String) {}
         override fun checkServerTrusted(certs: Array<X509Certificate>, authType: String) {}
     })
-
-    val httpClient: HttpClient
+    private val logger = Logging.getLogger(this.javaClass)
+    private val httpClient: HttpClient
 
     init {
         val httpClientBuilder = HttpClient.newBuilder()
@@ -72,7 +73,12 @@ class Http(val authHeader: String? = null) {
         headers.forEach { entry -> requestBuilder.header(entry.key, entry.value) }
 
         val request = requestBuilder.build()
-        return httpClient.send(request, HttpResponse.BodyHandlers.ofString())
+        val response = httpClient.send(request, HttpResponse.BodyHandlers.ofString())
+        if(response.statusCode() / 100 != 2){
+            logger.error("Request to {}://{} went wrong with status code {}", response.request().uri().scheme , response.request().uri().host, response.statusCode())
+            logger.debug(response.body())
+        }
+        return response
     }
 }
 

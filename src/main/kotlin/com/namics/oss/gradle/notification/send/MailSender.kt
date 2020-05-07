@@ -17,7 +17,7 @@ import javax.mail.Message as MailMessage
  * @since 01.04.20 17:24
  */
 class MailSender(override val template: String = MAIL_START, val to: String, val from: String, val subject: String, val smtpHost: String, val smtpPort: String = "25") : Sender {
-    override fun send(model: Model) {
+    override fun sendNotification(model: Model) {
         val text = process(model)
         val properties = System.getProperties()
 

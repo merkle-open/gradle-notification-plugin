@@ -12,10 +12,10 @@ import com.namics.oss.gradle.notification.Model
  * @since 01.04.20 17:24
  */
 class ChatSender(override val template: String = CHAT_START, val webhook: String, val threadKey: String = "") : Sender {
-    override fun send(model: Model) {
+    override fun sendNotification(model: Model) {
         var text = process(model)
-        if(text.length>= 4000){
-            text = text.substring(0,4000)
+        if (text.length >= 4000) {
+            text = text.substring(0, 4000)
         }
         val chatData = getJson(
             ChatData.serializer(),

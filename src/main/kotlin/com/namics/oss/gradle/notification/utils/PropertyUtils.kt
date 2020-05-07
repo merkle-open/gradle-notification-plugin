@@ -1,9 +1,8 @@
 package com.namics.oss.gradle.notification.utils
 
-import com.namics.oss.gradle.notification.NotificationConfiguration
-import com.namics.oss.gradle.notification.NotificationConfiguration.Factory.dir
-import com.namics.oss.gradle.notification.NotificationConfiguration.Factory.postfix
-import com.namics.oss.gradle.notification.NotificationConfiguration.Factory.prefix
+import com.namics.oss.gradle.notification.NotificationConfiguration.Factory.propertyDir
+import com.namics.oss.gradle.notification.NotificationConfiguration.Factory.propertyPostfix
+import com.namics.oss.gradle.notification.NotificationConfiguration.Factory.propertyPrefix
 import com.namics.oss.gradle.notification.Property
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonConfiguration
@@ -17,15 +16,15 @@ import java.io.FileNotFoundException
  * @since 17.04.20 17:33
  */
 fun getProperty(propertyKey: String): Property {
-    val file = File(dir, "$prefix$propertyKey$postfix")
+    val file = File(propertyDir, "$propertyPrefix$propertyKey$propertyPostfix")
     return getPropertyInternal(file)
 }
 
 fun saveProperty(property: Property) {
     val directory = createOrGetDir()
-    val file = File(directory, "$prefix${property.key}$postfix")
+    val file = File(directory, "$propertyPrefix${property.key}$propertyPostfix")
     if (!file.isFile) {
-        println("create new file $prefix${property.key}$postfix in $dir")
+        println("create new file $propertyPrefix${property.key}$propertyPostfix in $propertyDir")
         file.createNewFile()
     }
     val json = Json(JsonConfiguration.Stable)
@@ -34,12 +33,12 @@ fun saveProperty(property: Property) {
 
 fun isPropertyExisting(propertyKey: String): Boolean{
     val directory = createOrGetDir()
-    val file = File(directory, "$prefix${propertyKey}$postfix")
+    val file = File(directory, "$propertyPrefix${propertyKey}$propertyPostfix")
     return file.isFile
 }
 
 fun getAllProperties(): List<Property> {
-    val directory = File(dir)
+    val directory = File(propertyDir)
     return directory.listFiles()?.map { getPropertyInternal(it) }?.toList() ?: return emptyList()
 }
 
@@ -56,7 +55,7 @@ private fun getPropertyInternal(file: File): Property {
 }
 
 private fun createOrGetDir(): File {
-    val directory = File(dir)
+    val directory = File(propertyDir)
     if (directory.mkdirs()) {
         println("$directory is created successfully.")
     }

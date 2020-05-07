@@ -1,7 +1,5 @@
 package com.namics.oss.gradle.notification
 
-import kotlin.properties.Delegates
-
 /**
  * NotificationConfiguration.
  *
@@ -10,21 +8,25 @@ import kotlin.properties.Delegates
  */
 class NotificationConfiguration {
     companion object Factory {
-        var dir: String = "build/notification_plugin"
+        var propertyDir: String = "build/notification_plugin"
             private set
-        var prefix: String = "notify_"
+        var propertyPrefix: String = "notify_"
             private set
-        var postfix: String = ".json"
+        var propertyPostfix: String = ".json"
+            private set
+        var throwExceptions: Boolean = false
             private set
 
         fun initialize(
-            dir: String = this.dir,
-            prefix: String = this.prefix,
-            postfix: String = this.postfix
+                propertyDir: String = this.propertyDir,
+                propertyPrefix: String = this.propertyPrefix,
+                propertyPostfix: String = this.propertyPostfix,
+                throwExceptions: Boolean = this.throwExceptions
         ) {
-            this.dir = dir
-            this.prefix = prefix
-            this.postfix = postfix
+            this.propertyDir = propertyDir
+            this.propertyPrefix = propertyPrefix
+            this.propertyPostfix = propertyPostfix
+            this.throwExceptions = throwExceptions
         }
     }
 }

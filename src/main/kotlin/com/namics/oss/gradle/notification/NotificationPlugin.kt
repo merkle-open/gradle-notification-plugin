@@ -1,7 +1,6 @@
 package com.namics.oss.gradle.notification
 
 import com.namics.oss.gradle.notification.collect.ListCollector
-import com.namics.oss.gradle.notification.collect.StringCollector
 import com.namics.oss.gradle.notification.collect.listProperty
 import com.namics.oss.gradle.notification.collect.property
 import com.namics.oss.gradle.notification.send.ConsoleSender
@@ -21,7 +20,7 @@ import org.gradle.kotlin.dsl.register
 class NotificationPlugin : Plugin<Project> {
     override fun apply(project: Project): Unit = project.run {
         val extension = project.extensions.create("notify", NotificationExtension::class.java)
-        NotificationConfiguration.initialize(dir = project.buildDir.absolutePath + "/notify")
+        NotificationConfiguration.initialize(propertyDir = project.buildDir.absolutePath + "/notify")
         tasks.register("notifyTask", NotifyTask::class) {
             /* define collectors */
             /* used collectors are StringCollector and ListCollector, more implementations: com.namics.oss.gradle.notification.collect */

@@ -5,7 +5,7 @@ import com.namics.oss.gradle.notification.Property.StringProperty
 import com.namics.oss.gradle.notification.utils.saveProperty
 
 /**
- * FixedValueCollector.
+ * Collect a simple key/value Property and save it as StringProperty.
  *
  * @author rgsell, Namics AG
  * @since 22.04.20 11:56

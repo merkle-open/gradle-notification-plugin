@@ -20,7 +20,7 @@ class NewRelicSender(
     val revision: String,
     val user: String
 ) : Sender {
-    override fun send(model: Model) {
+    override fun sendNotification(model: Model) {
         val description = process(template, model)
         val changelog = process(changelogTemplate, model)
         val newRelicData = getJson(

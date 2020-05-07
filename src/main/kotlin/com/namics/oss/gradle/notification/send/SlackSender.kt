@@ -13,7 +13,7 @@ import com.namics.oss.gradle.notification.Model
  */
 class SlackSender(override val template: String = SLACK_START, val webhook: String, val channel: String) : Sender {
 
-    override fun send(model: Model) {
+    override fun sendNotification(model: Model) {
         val text = process(model)
         val slackData = getJson(
             SlackData.serializer(),

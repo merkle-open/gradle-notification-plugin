@@ -5,7 +5,7 @@ import com.namics.oss.gradle.notification.Property.ListProperty
 import com.namics.oss.gradle.notification.utils.saveProperty
 
 /**
- * ListCollector.
+ * Collect a simple key/value Property and save it as ListProperty.
  *
  * @author rgsell, Namics AG
  * @since 22.04.20 11:58

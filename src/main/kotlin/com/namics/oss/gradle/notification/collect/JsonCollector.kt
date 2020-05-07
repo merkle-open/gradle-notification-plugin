@@ -8,7 +8,7 @@ import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.content
 
 /**
- * VersionExtractor.
+ * Collect a StringProperty from a json endpoint, traversed by json path.
  *
  * @author rgsell, Namics AG
  * @since 08.04.20 17:06

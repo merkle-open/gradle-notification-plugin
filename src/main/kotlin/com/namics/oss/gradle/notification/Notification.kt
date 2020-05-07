@@ -10,8 +10,8 @@ import com.namics.oss.gradle.notification.send.Sender
  * @since 21.04.20 09:05
  */
 class Notification {
-    val collectors = mutableListOf<Collector>()
-    val senders = mutableListOf<Sender>()
+    private val collectors = mutableListOf<Collector>()
+    private val senders = mutableListOf<Sender>()
 
     fun senders(vararg sender: Sender) = senders.addAll(sender)
 
