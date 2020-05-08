@@ -15,10 +15,10 @@ import com.namics.oss.gradle.notification.send.NewRelicSender
  * @author rgsell, Namics AG
  * @since 08.04.20 14:58
  */
+@Disabled("for manual testing")
 internal class NewRelicSenderTest {
 
     @Test
-    @Disabled("for manual testing")
     fun send() {
         val model = model {
             property {

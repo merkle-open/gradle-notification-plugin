@@ -7,13 +7,13 @@ Add plugin in gradle Project.
 Kotlin
 ```kotlin
 plugins {
-  id("com.namics.oss.gradle.notification-plugin") version "0.1.0-1"
+  id("com.namics.oss.gradle.notification-plugin") version "0.3.0-0"
 }
 ```
 Groovy
 ```Groovy
 plugins {
-  id "com.namics.oss.gradle.notification-plugin" version "0.1.0-1"
+  id "com.namics.oss.gradle.notification-plugin" version "0.3.0-0"
 }
 ```
 ## How does it work?
@@ -44,14 +44,14 @@ Collects a value from a json enabled endpoint.
 Stores a property (value = `String`).
 ```kotlin
 JsonCollector(
-    propertyKey = "oldVersion",
+    propertyKey = "oldRevision",
     uri = "https://github.com/some.json",
     jsonPath = "json.path.to.value",
     authHeader = basicAuthHeader("username", "password") // this String will be added to Authorization header, leave empty if no authorization needed
 )
 ```
 #### GitHistoryCollector
-Collects Git log, this collector depends on `git` available on the executing environment. As well there needs to be a revision already defined in the properties to get logs from (default propertyKey for old version is `oldVersion`, can be overwritten by property versionPropertyKey).
+Collects Git log, this collector depends on `git` available on the executing environment. As well there needs to be a revision already defined in the properties to get logs from (default propertyKey for old revision is `oldRevision`, can be overwritten by property oldRevisionPropertyKey).
 
 Stores a list property (value = `List<String>`).
 ```kotlin

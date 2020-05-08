@@ -20,7 +20,7 @@ class GitUtils(
     val timoutSeconds: Long = 120L
 ) {
 
-    fun log(version: String, oldVersion: String, limit: Int) = perform("log","$oldVersion..$version","-$limit", "--pretty='%an: %s'")
+    fun log(newRevision: String, oldRevision: String, limit: Int) = perform("log","$oldRevision..$newRevision","-$limit", "--pretty='%an: %s'")
 
     private fun perform(vararg arguments: String): Stream<String> {
         try {

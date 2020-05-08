@@ -37,7 +37,7 @@ internal class SlackSenderTest {
             }
             property {
                 key = "oldVersion"
-                value = "6.6.0"
+                value = "6.6.0-SNAPSHOT"
             }
         }
 

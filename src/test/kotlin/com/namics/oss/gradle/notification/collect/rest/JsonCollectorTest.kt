@@ -23,17 +23,33 @@ import org.mockserver.model.HttpResponse
 internal class JsonCollectorTest : AbstractMockHttpMockServer() {
 
     @Test
-    fun extract() {
+    fun extractRevision() {
         createMockServer()
         JsonCollector(
-            propertyKey = "version",
+            propertyKey = "oldRevision",
             uri = protocol + host + ":" + port + endpoint,
             jsonPath = "git.commit.id.full",
-            authHeader = basicAuthHeader("info", "password")
+            authHeader = basicAuthHeader("info", "password"),
+            overwrite = true
         ).collect()
-        val property = getProperty("version") as StringProperty
-        assertEquals("version", property.key)
+        val property = getProperty("oldRevision") as StringProperty
+        assertEquals("oldRevision", property.key)
         assertEquals("e8e249ae15ea4b0d75e262c79933107a9d534452", property.value)
+    }
+
+    @Test
+    fun extractVersion() {
+        createMockServer()
+        JsonCollector(
+            propertyKey = "oldVersion",
+            uri = protocol + host + ":" + port + endpoint,
+            jsonPath = "build.version",
+            authHeader = basicAuthHeader("info", "password"),
+            overwrite = true
+        ).collect()
+        val property = getProperty("oldVersion") as StringProperty
+        assertEquals("oldVersion", property.key)
+        assertEquals("8.4.0-SNAPSHOT", property.value)
     }
 
     fun createMockServer() {
@@ -53,6 +69,9 @@ internal class JsonCollectorTest : AbstractMockHttpMockServer() {
                                         "full": "e8e249ae15ea4b0d75e262c79933107a9d534452" 
                                     }
                                 }
+                            },
+                            "build": {
+                                "version": "8.4.0-SNAPSHOT"
                             }
                         }"""
                 )

@@ -14,10 +14,10 @@ import com.namics.oss.gradle.notification.send.MailSender
  * @author rgsell, Namics AG
  * @since 01.04.20 18:46
  */
+@Disabled("for manual testing")
 internal class MailSenderTest {
     //configure this variables
     @Test
-    @Disabled("for manual testing")
     fun send() {
         val model = model {
             property {

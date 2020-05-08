@@ -21,7 +21,7 @@ import org.mockserver.model.HttpResponse
  * @author rgsell, Namics AG
  * @since 21.04.20 09:33
  */
-@Disabled("for manual testing")
+//@Disabled("for manual testing")
 internal class NotificationTest : AbstractMockHttpMockServer() {
 
     @Test
@@ -66,10 +66,17 @@ internal class NotificationTest : AbstractMockHttpMockServer() {
                 property("targetEnv", "DEV"),
                 property("gitUrl", "github.com"),
                 property("jiraUrl", "jira.com"),
+                property("version", "0.1.0"),
+                JsonCollector(
+                    propertyKey = "oldRevision",
+                    uri = protocol + host + ":" + port + endpoint,
+                    jsonPath = "git.commit.id.full",
+                    authHeader = basicAuthHeader("info", "password")
+                ),
                 JsonCollector(
                     propertyKey = "oldVersion",
-                    uri = protocol+host+":"+port+endpoint,
-                    jsonPath = "git.commit.id.full",
+                    uri = protocol + host + ":" + port + endpoint,
+                    jsonPath = "build.version",
                     authHeader = basicAuthHeader("info", "password")
                 ),
                 GitHistoryCollector(
@@ -96,10 +103,17 @@ internal class NotificationTest : AbstractMockHttpMockServer() {
                 property("gitUrl", "github.com"),
                 property("jiraUrl", "jira.com"),
                 property("issuesUrl", "jira.com/issues"),
+                property("version", "0.1.0"),
+                JsonCollector(
+                    propertyKey = "oldRevision",
+                    uri = protocol + host + ":" + port + endpoint,
+                    jsonPath = "git.commit.id.full",
+                    authHeader = basicAuthHeader("info", "password")
+                ),
                 JsonCollector(
                     propertyKey = "oldVersion",
-                    uri = protocol+host+":"+port+endpoint,
-                    jsonPath = "git.commit.id.full",
+                    uri = protocol + host + ":" + port + endpoint,
+                    jsonPath = "build.version",
                     authHeader = basicAuthHeader("info", "password")
                 ),
                 GitHistoryCollector(
@@ -144,6 +158,9 @@ internal class NotificationTest : AbstractMockHttpMockServer() {
                                         "full": "e8e249ae15ea4b0d75e262c79933107a9d534452" 
                                     }
                                 }
+                            },
+                            "build": {
+                                "version": "8.4.0-SNAPSHOT"
                             }
                         }"""
                 )

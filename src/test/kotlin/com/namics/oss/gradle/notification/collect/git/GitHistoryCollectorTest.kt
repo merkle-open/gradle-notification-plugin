@@ -25,7 +25,7 @@ internal class GitHistoryCollectorTest {
     fun extract() {
         saveProperty(
             property {
-                key = "oldVersion"
+                key = "oldRevision"
                 value = "adcf0cda5147edf7d66152686c4f955c7dd17b90"
             })
         GitHistoryCollector(
