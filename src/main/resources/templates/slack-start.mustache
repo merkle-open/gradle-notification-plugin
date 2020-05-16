@@ -1,4 +1,4 @@
 Start {{targetEnv}} Deployment {{version}}
 Previous Version: {{oldVersion}}
 New Version: {{version}}
-changes: {{jiraUrl}}
+Changes: {{jiraUrl}}/issues/?jql=key%20in%20({{#issues}}{{{value}}}{{^last}},{{/last}}{{/issues}})

@@ -38,6 +38,10 @@ internal class ChatSenderTest {
                 key = "changes"
                 value = listOf("TICKET-123: Test mit bla", "TICKET-312: Ich habe was Implementiert")
             }
+            property {
+                key = "branch"
+                value = "develop"
+            }
         }
 
         ChatSender(template = CHAT_START, webhook = webhook)

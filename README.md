@@ -115,6 +115,8 @@ ConsoleSender()
 ### Templating
 The Plugin uses mustache templates to send notification. Every sender allows a custom template which overwrites the default template.
 
+Default templates can be found in resources [src/main/resources/templates](src/main/resources/templates)
+
 ### Example
 This example shows how to collect properties and send a message to the console.
 

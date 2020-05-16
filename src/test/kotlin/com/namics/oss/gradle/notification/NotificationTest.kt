@@ -64,9 +64,11 @@ internal class NotificationTest : AbstractMockHttpMockServer() {
         notification {
             collectors(
                 property("targetEnv", "DEV"),
-                property("gitUrl", "github.com"),
+                property("gitUrl", "https://github.com/namics/gradle-notification-plugin"),
                 property("jiraUrl", "jira.com"),
                 property("version", "0.1.0"),
+                property("branch", "master"),
+                property("revision", "123123123123123123123"),
                 JsonCollector(
                     propertyKey = "oldRevision",
                     uri = protocol + host + ":" + port + endpoint,
@@ -100,10 +102,10 @@ internal class NotificationTest : AbstractMockHttpMockServer() {
             collectors(
                 property("headline", "Deployment"),
                 property("targetEnv", "DEV"),
-                property("gitUrl", "github.com"),
+                property("gitUrl", "https://github.com/namics/gradle-notification-plugin"),
                 property("jiraUrl", "jira.com"),
-                property("issuesUrl", "jira.com/issues"),
                 property("version", "0.1.0"),
+                property("branch", "develop"),
                 JsonCollector(
                     propertyKey = "oldRevision",
                     uri = protocol + host + ":" + port + endpoint,

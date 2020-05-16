@@ -36,10 +36,6 @@ internal class MailSenderTest {
                 key = "jiraUrl"
                 value = "jira.com"
             }
-            property {
-                key = "issuesUrl"
-                value = "jira.com/issues"
-            }
             listProperty {
                 key = "changes"
                 value = listOf("TICKET-123: Test mit bla", "TiCKET-312: Ich habe was Implementiert")
