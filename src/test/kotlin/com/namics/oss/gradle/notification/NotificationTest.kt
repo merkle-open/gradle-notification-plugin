@@ -21,7 +21,7 @@ import org.mockserver.model.HttpResponse
  * @author rgsell, Namics AG
  * @since 21.04.20 09:33
  */
-//@Disabled("for manual testing")
+@Disabled("for manual testing")
 internal class NotificationTest : AbstractMockHttpMockServer() {
 
     @Test
