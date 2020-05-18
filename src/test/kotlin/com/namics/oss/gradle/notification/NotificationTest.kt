@@ -21,7 +21,7 @@ import org.mockserver.model.HttpResponse
  * @author rgsell, Namics AG
  * @since 21.04.20 09:33
  */
-@Disabled("for manual testing")
+//@Disabled("for manual testing")
 internal class NotificationTest : AbstractMockHttpMockServer() {
 
     @Test
@@ -69,6 +69,7 @@ internal class NotificationTest : AbstractMockHttpMockServer() {
                 property("version", "0.1.0"),
                 property("branch", "master"),
                 property("revision", "123123123123123123123"),
+                property("environmentUrl", "https://github.com/namics/gradle-notification-plugin"),
                 JsonCollector(
                     propertyKey = "oldRevision",
                     uri = protocol + host + ":" + port + endpoint,
@@ -106,6 +107,7 @@ internal class NotificationTest : AbstractMockHttpMockServer() {
                 property("jiraUrl", "jira.com"),
                 property("version", "0.1.0"),
                 property("branch", "develop"),
+                property("environmentUrl", "https://github.com/namics/gradle-notification-plugin"),
                 JsonCollector(
                     propertyKey = "oldRevision",
                     uri = protocol + host + ":" + port + endpoint,
