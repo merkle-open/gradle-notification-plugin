@@ -1,7 +1,6 @@
-package com.namics.oss.gradle.notification.collect.git
+package com.namics.oss.gradle.notification.collect
 
 import com.namics.oss.gradle.notification.Property.ListProperty
-import com.namics.oss.gradle.notification.collect.GitHistoryCollector
 import com.namics.oss.gradle.notification.getTestProperty
 import com.namics.oss.gradle.notification.property
 import com.namics.oss.gradle.notification.utils.getProperty

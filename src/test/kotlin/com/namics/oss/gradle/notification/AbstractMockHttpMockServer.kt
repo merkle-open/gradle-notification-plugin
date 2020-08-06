@@ -1,13 +1,7 @@
 package com.namics.oss.gradle.notification
 
-import com.namics.oss.gradle.notification.collect.rest.JsonCollectorTest
 import org.junit.jupiter.api.AfterAll
-import org.junit.jupiter.api.BeforeEach
-import org.mockserver.client.MockServerClient
 import org.mockserver.integration.ClientAndServer
-import org.mockserver.model.Header
-import org.mockserver.model.HttpRequest
-import org.mockserver.model.HttpResponse
 
 /**
  * AbstractMockHttpMockServer.

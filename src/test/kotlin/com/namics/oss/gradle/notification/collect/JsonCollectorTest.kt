@@ -1,4 +1,4 @@
-package com.namics.oss.gradle.notification.collect.rest
+package com.namics.oss.gradle.notification.collect
 
 import com.namics.oss.gradle.notification.AbstractMockHttpMockServer
 import com.namics.oss.gradle.notification.Property.StringProperty

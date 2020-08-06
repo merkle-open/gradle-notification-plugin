@@ -1,10 +1,7 @@
 package com.namics.oss.gradle.notification.utils
 
-import com.namics.oss.gradle.notification.Property
-import com.namics.oss.gradle.notification.Property.ListProperty
-import com.namics.oss.gradle.notification.Property.StringProperty
-import com.namics.oss.gradle.notification.listProperty
-import com.namics.oss.gradle.notification.property
+import com.namics.oss.gradle.notification.*
+import com.namics.oss.gradle.notification.Property.*
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
@@ -39,5 +36,60 @@ internal class PropertyUtilsTest {
 
         assertEquals("testList", property.key)
         assertEquals(listOf("testValue1", "testValue2"), property.value)
+    }
+
+    @Test
+    fun jiraVersionProperty() {
+        saveProperty(jiraVersionProperty {
+            key = "testJiraVersion"
+            value = mapOf(
+                "Bug" to listOf(
+                    JiraIssue(
+                        key = "KEY-1",
+                        summary = "this is the summary for first issue",
+                        type = "Bug"
+                    )
+                ),
+                "Story" to listOf(
+                    JiraIssue(
+                        key = "KEY-2",
+                        summary = "this is the summary for second issue",
+                        type = "Story"
+                    ),
+                    JiraIssue(
+                        key = "KEY-3",
+                        summary = "this is the summary for third issue",
+                        type = "Story"
+                    )
+                )
+            )
+        })
+
+        val property = getProperty("testJiraVersion") as JiraVersionProperty
+
+        assertEquals("testJiraVersion", property.key)
+        assertEquals(
+            mapOf(
+                "Bug" to listOf(
+                    JiraIssue(
+                        key = "KEY-1",
+                        summary = "this is the summary for first issue",
+                        type = "Bug"
+                    )
+                ),
+                "Story" to listOf(
+                    JiraIssue(
+                        key = "KEY-2",
+                        summary = "this is the summary for second issue",
+                        type = "Story"
+                    ),
+                    JiraIssue(
+                        key = "KEY-3",
+                        summary = "this is the summary for third issue",
+                        type = "Story"
+                    )
+                )
+            ), property.value
+        )
     }
 }
