@@ -44,22 +44,22 @@ internal class PropertyUtilsTest {
             key = "testJiraVersion"
             value = mapOf(
                 "Bug" to listOf(
-                    JiraIssue(
-                        key = "KEY-1",
-                        summary = "this is the summary for first issue",
-                        type = "Bug"
+                    mapOf(
+                        "issueKey" to "KEY-1",
+                        "summary" to "this is the summary for first issue",
+                        "type" to "Bug"
                     )
                 ),
                 "Story" to listOf(
-                    JiraIssue(
-                        key = "KEY-2",
-                        summary = "this is the summary for second issue",
-                        type = "Story"
+                    mapOf(
+                        "issueKey" to "KEY-2",
+                        "summary" to "this is the summary for second issue",
+                        "type" to "Story"
                     ),
-                    JiraIssue(
-                        key = "KEY-3",
-                        summary = "this is the summary for third issue",
-                        type = "Story"
+                    mapOf(
+                        "issueKey" to "KEY-3",
+                        "summary" to "this is the summary for third issue",
+                        "type" to "Story"
                     )
                 )
             )
@@ -71,22 +71,22 @@ internal class PropertyUtilsTest {
         assertEquals(
             mapOf(
                 "Bug" to listOf(
-                    JiraIssue(
-                        key = "KEY-1",
-                        summary = "this is the summary for first issue",
-                        type = "Bug"
+                    mapOf(
+                        "issueKey" to "KEY-1",
+                        "summary" to "this is the summary for first issue",
+                        "type" to "Bug"
                     )
                 ),
                 "Story" to listOf(
-                    JiraIssue(
-                        key = "KEY-2",
-                        summary = "this is the summary for second issue",
-                        type = "Story"
+                    mapOf(
+                        "issueKey" to "KEY-2",
+                        "summary" to "this is the summary for second issue",
+                        "type" to "Story"
                     ),
-                    JiraIssue(
-                        key = "KEY-3",
-                        summary = "this is the summary for third issue",
-                        type = "Story"
+                    mapOf(
+                        "issueKey" to "KEY-3",
+                        "summary" to "this is the summary for third issue",
+                        "type" to "Story"
                     )
                 )
             ), property.value

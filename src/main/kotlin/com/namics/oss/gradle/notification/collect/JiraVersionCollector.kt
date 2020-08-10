@@ -1,7 +1,6 @@
 package com.namics.oss.gradle.notification.collect
 
 import com.namics.oss.gradle.notification.Http
-import com.namics.oss.gradle.notification.JiraIssue
 import com.namics.oss.gradle.notification.Property
 import com.namics.oss.gradle.notification.Property.JiraVersionProperty
 import com.namics.oss.gradle.notification.utils.getPathElement
@@ -25,12 +24,12 @@ class JiraVersionCollector(
         val jsonElement = Http(authHeader).getJson(uri)
         val jsonIssues = jsonElement.jsonObject.getPathElement(issuesPath)
         val jiraIssues = jsonIssues?.jsonArray?.map {
-            JiraIssue(
-                key = it.jsonObject.getPathString(keyPath) ?: "",
-                summary = it.jsonObject.getPathString(summaryPath) ?: "",
-                type = it.jsonObject.getPathString(typePath) ?: ""
+            mapOf(
+                "issueKey" to (it.jsonObject.getPathString(keyPath) ?: ""),
+                "summary" to (it.jsonObject.getPathString(summaryPath) ?: ""),
+                "type" to (it.jsonObject.getPathString(typePath) ?: "")
             )
-        }?.groupBy { it.type }?.toMap()
+        }?.groupBy { it.get("type") ?: "" }?.toMap()
         return JiraVersionProperty(key = propertyKey, value = jiraIssues ?: emptyMap())
     }
 }

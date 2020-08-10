@@ -22,7 +22,10 @@ internal class JiraVersionCollectorTest : AbstractMockHttpMockServer() {
 
     @Test
     fun collect() {
-        val authHeader = basicAuthHeader(getTestProperty("collector.jiraversion.user"), getTestProperty("collector.jiraversion.password"))
+        val authHeader = basicAuthHeader(
+            getTestProperty("collector.jiraversion.user"),
+            getTestProperty("collector.jiraversion.password")
+        )
         val collector = JiraVersionCollector(
             host = getTestProperty("collector.jiraversion.host"),
             version = getTestProperty("collector.jiraversion.version"),
@@ -45,27 +48,29 @@ internal class JiraVersionCollectorTest : AbstractMockHttpMockServer() {
         ).collect()
         val property = getProperty("jiraVersion") as Property.JiraVersionProperty
         assertEquals("jiraVersion", property.key)
-        assertEquals(mapOf(
-            "Bug" to listOf(
-                JiraIssue(
-                    key = "KEY-1",
-                    summary = "summary 1",
-                    type = "Bug"
+        assertEquals(
+            mapOf(
+                "Bug" to listOf(
+                    mapOf(
+                        "issueKey" to "KEY-1",
+                        "summary" to "summary 1",
+                        "type" to "Bug"
+                    ),
+                    mapOf(
+                        "issueKey" to "KEY-2",
+                        "summary" to "summary 2",
+                        "type" to "Bug"
+                    )
                 ),
-                JiraIssue(
-                    key = "KEY-2",
-                    summary = "summary 2",
-                    type = "Bug"
+                "Story" to listOf(
+                    mapOf(
+                        "issueKey" to "KEY-3",
+                        "summary" to "summary 3",
+                        "type" to "Story"
+                    )
                 )
-            ),
-            "Story" to listOf(
-                JiraIssue(
-                    key = "KEY-3",
-                    summary = "summary 3",
-                    type = "Story"
-                )
-            )
-        ), property.value)
+            ), property.value
+        )
     }
 
     fun createMockServer() {

@@ -32,9 +32,10 @@ sealed class Property {
             return "Property(key='$key', value='$value')"
         }
     }
+
     @Serializable
     @SerialName("ListProperty")
-    data class ListProperty (
+    data class ListProperty(
         override var key: String = "",
         var value: List<String> = emptyList()
     ) : Property() {
@@ -46,14 +47,15 @@ sealed class Property {
             return "Property(key='$key', value='$value')"
         }
     }
+
     @Serializable
     @SerialName("JiraVersionProperty")
-    data class JiraVersionProperty (
+    data class JiraVersionProperty(
         override var key: String = "",
-        var value: Map<String, List<JiraIssue>> = emptyMap()
+        var value: Map<String, List<Map<String, String>>> = emptyMap()
     ) : Property() {
         override fun getValue(): Any {
-            return value.mapValues { DecoratedCollection(it.value) }
+            return DecoratedCollection(value.mapValues { DecoratedCollection(it.value) }.entries)
         }
 
         override fun toString(): String {
@@ -61,6 +63,7 @@ sealed class Property {
         }
     }
 }
+
 fun property(init: Property.StringProperty.() -> Unit): Property.StringProperty {
     return Property.StringProperty().apply(init)
 }

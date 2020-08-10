@@ -8,9 +8,11 @@ Changes:
 ========
 
 View in Jira
-https://{{jiraUrl}}/issues/?jql=key%20in%20({{#issues}}{{{value}}}{{^last}},{{/last}}{{/issues}})
+https://{{jiraUrl}}/issues/?jql=key%20in%20({{#jiraVersion}}{{#value.value}}{{{value.issueKey}}}{{^last}},{{/last}}{{/value.value}}{{^last}},{{/last}}{{/jiraVersion}})
 
 Tickets
-{{#issues}}
-https://{{jiraUrl}}/browse/{{{value}}}
-{{/issues}}
+{{#jiraVersion}}
+{{#value.value}}
+[{{value.type}}] - https://{{jiraUrl}}/browse/{{value.issueKey}} {{value.summary}}
+{{/value.value}}
+{{/jiraVersion}}
