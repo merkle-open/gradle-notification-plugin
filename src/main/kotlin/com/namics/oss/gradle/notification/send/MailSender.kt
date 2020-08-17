@@ -1,7 +1,8 @@
 package com.namics.oss.gradle.notification.send
 
+import com.namics.oss.gradle.notification.DefaultTemplates.Companion.MAIL_START
 import com.namics.oss.gradle.notification.Model
-import com.namics.oss.gradle.notification.NotificationExtension.Companion.MAIL_START
+import com.namics.oss.gradle.notification.send.Sender
 import javax.mail.Session
 import javax.mail.Transport
 import javax.mail.internet.InternetAddress

@@ -1,6 +1,6 @@
 package com.namics.oss.gradle.notification.send.mail
 
-import com.namics.oss.gradle.notification.NotificationExtension.Companion.MAIL_START
+import com.namics.oss.gradle.notification.DefaultTemplates.Companion.MAIL_START
 import com.namics.oss.gradle.notification.getTestProperty
 import org.junit.jupiter.api.Test
 

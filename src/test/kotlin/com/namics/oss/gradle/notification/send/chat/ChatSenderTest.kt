@@ -1,7 +1,7 @@
 package com.namics.oss.gradle.notification.send.chat
 
-import com.namics.oss.gradle.notification.NotificationExtension.Companion.CHAT_DONE
-import com.namics.oss.gradle.notification.NotificationExtension.Companion.CHAT_START
+import com.namics.oss.gradle.notification.DefaultTemplates.Companion.CHAT_DONE
+import com.namics.oss.gradle.notification.DefaultTemplates.Companion.CHAT_START
 import com.namics.oss.gradle.notification.getTestProperty
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test

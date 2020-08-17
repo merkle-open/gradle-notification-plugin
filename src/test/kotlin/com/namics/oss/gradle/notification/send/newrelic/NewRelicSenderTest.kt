@@ -1,7 +1,7 @@
 package com.namics.oss.gradle.notification.send.newrelic
 
-import com.namics.oss.gradle.notification.NotificationExtension.Companion.NEW_RELIC_CHANGELOG
-import com.namics.oss.gradle.notification.NotificationExtension.Companion.NEW_RELIC_DESCRIPTION
+import com.namics.oss.gradle.notification.DefaultTemplates.Companion.NEW_RELIC_CHANGELOG
+import com.namics.oss.gradle.notification.DefaultTemplates.Companion.NEW_RELIC_DESCRIPTION
 import com.namics.oss.gradle.notification.getTestProperty
 import org.junit.jupiter.api.Test
 

@@ -1,6 +1,6 @@
 package com.namics.oss.gradle.notification
 
-import com.namics.oss.gradle.notification.NotificationExtension.Companion.CHAT_DONE
+import com.namics.oss.gradle.notification.DefaultTemplates.Companion.CHAT_DONE
 import com.namics.oss.gradle.notification.collect.*
 import com.namics.oss.gradle.notification.send.ChatSender
 import com.namics.oss.gradle.notification.send.ConsoleSender

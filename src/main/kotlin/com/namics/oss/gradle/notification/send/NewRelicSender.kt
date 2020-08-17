@@ -1,10 +1,10 @@
 package com.namics.oss.gradle.notification.send
 
+import com.namics.oss.gradle.notification.DefaultTemplates.Companion.NEW_RELIC_CHANGELOG
+import com.namics.oss.gradle.notification.DefaultTemplates.Companion.NEW_RELIC_DESCRIPTION
 import kotlinx.serialization.Serializable
 import com.namics.oss.gradle.notification.Http
 import com.namics.oss.gradle.notification.Model
-import com.namics.oss.gradle.notification.NotificationExtension.Companion.NEW_RELIC_CHANGELOG
-import com.namics.oss.gradle.notification.NotificationExtension.Companion.NEW_RELIC_DESCRIPTION
 
 /**
  * Create Deploments in new relic.

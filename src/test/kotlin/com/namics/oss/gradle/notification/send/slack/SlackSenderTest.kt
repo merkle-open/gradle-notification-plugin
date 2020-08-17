@@ -1,7 +1,7 @@
 package com.namics.oss.gradle.notification.send.slack
 
-import com.namics.oss.gradle.notification.NotificationExtension.Companion.SLACK_DONE
-import com.namics.oss.gradle.notification.NotificationExtension.Companion.SLACK_START
+import com.namics.oss.gradle.notification.DefaultTemplates.Companion.SLACK_DONE
+import com.namics.oss.gradle.notification.DefaultTemplates.Companion.SLACK_START
 import com.namics.oss.gradle.notification.getTestProperty
 import com.namics.oss.gradle.notification.model
 import com.namics.oss.gradle.notification.send.SlackSender

@@ -10,16 +10,6 @@ import com.namics.oss.gradle.notification.send.*
  * @since 21.04.20 15:47
  */
 open class NotificationExtension(var propertyDir: String = "build/notification_plugin") {
-    companion object {
-        const val CHAT_START = "templates/chat-start.mustache"
-        const val CHAT_DONE = "templates/chat-done.mustache"
-        const val SLACK_START ="templates/slack-start.mustache"
-        const val SLACK_DONE = "templates/slack-done.mustache"
-        const val MAIL_START = "templates/mail-start.mustache"
-        const val MAIL_DONE = "templates/mail-done.mustache"
-        const val NEW_RELIC_CHANGELOG ="templates/newrelic-changelog.mustache"
-        const val NEW_RELIC_DESCRIPTION = "templates/newrelic-description.mustache"
-    }
     var propertyPrefix: String = "notify_"
     var propertyPostfix: String = ".json"
     var throwExceptions: Boolean = false
