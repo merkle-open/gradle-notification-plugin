@@ -18,12 +18,12 @@ import kotlin.streams.toList
  * @since 08.04.20 17:06
  */
 class GitHistoryCollector(
-    override val propertyKey: String = "changes",
-    val newRevision: String = "HEAD",
-    val oldRevisionPropertyKey: String = "oldRevision",
-    var rootPath: String,
-    val limit: Int = 100,
-    override val overwrite: Boolean = false
+    override var propertyKey: String = "changes",
+    var newRevision: String = "HEAD",
+    var oldRevisionPropertyKey: String = "oldRevision",
+    var rootPath: String? = null,
+    var limit: Int = 100,
+    override var overwrite: Boolean = false
 ) : Collector {
     val logger = Logging.getLogger(this.javaClass)
     override fun collectProperty(): Property {
@@ -33,7 +33,7 @@ class GitHistoryCollector(
                 logger.error("Property '$oldRevisionPropertyKey' has no value, $oldRevisionPropertyKey input is not correct")
             }
             val git = GitUtils(
-                rootPath = File(rootPath),
+                rootPath = File(requireNotNull(rootPath)),
                 logger = Logging.getLogger(this.javaClass)
             )
             var gitLog = git.log(newRevision, oldRevision.value, limit).toList()
@@ -42,10 +42,10 @@ class GitHistoryCollector(
             }
 
             return ListProperty(propertyKey, gitLog)
-        } catch (e: FileNotFoundException){
+        } catch (e: FileNotFoundException) {
             logger.error("File for Property '$oldRevisionPropertyKey' not found, Collector for property $oldRevisionPropertyKey must be defined before GitHistoryExtractor")
             throw e
-        } catch (e: GradleException){
+        } catch (e: GradleException) {
             logger.error("Could not extract from git")
             throw e
         }

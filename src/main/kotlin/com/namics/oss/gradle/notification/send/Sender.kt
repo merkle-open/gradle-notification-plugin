@@ -17,7 +17,7 @@ import java.io.StringWriter
  * @since 30.03.20 14:56
  */
 interface Sender {
-    val template: String
+    var template: String
 
     /**
      * Sender specific implementation.

@@ -10,12 +10,12 @@ import com.namics.oss.gradle.notification.utils.saveProperty
  * @author rgsell, Namics AG
  * @since 22.04.20 11:56
  */
-class StringCollector(override val propertyKey: String,
-                      val value: String,
-                      override val overwrite: Boolean = false) :
+class StringCollector(override var propertyKey: String = "stringCollector",
+                      var value: String? = null,
+                      override var overwrite: Boolean = false) :
     Collector {
     override fun collectProperty(): Property {
-        return StringProperty(propertyKey, value)
+        return StringProperty(propertyKey, requireNotNull(value))
     }
 }
 

@@ -11,7 +11,11 @@ import com.namics.oss.gradle.notification.Model
  * @author rgsell, Namics AG
  * @since 01.04.20 17:24
  */
-class ChatSender(override val template: String = CHAT_START, val webhook: String, val threadKey: String = "") : Sender {
+class ChatSender(
+    override var template: String = CHAT_START,
+    var webhook: String? = null,
+    var threadKey: String = ""
+) : Sender {
     override fun sendNotification(model: Model) {
         var text = process(model)
         if (text.length >= 4000) {
@@ -22,7 +26,7 @@ class ChatSender(override val template: String = CHAT_START, val webhook: String
             ChatData(text)
         )
 
-        val uri = webhook + if (!threadKey.isEmpty()) "&threadKey=" + threadKey else ""
+        val uri = requireNotNull(webhook) + if (!threadKey.isEmpty()) "&threadKey=" + threadKey else ""
         Http().postJson(chatData, uri)
     }
 }

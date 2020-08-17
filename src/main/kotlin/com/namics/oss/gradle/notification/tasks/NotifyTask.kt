@@ -15,7 +15,7 @@ import org.gradle.api.tasks.TaskAction
  */
 open class NotifyTask : DefaultTask() {
     @Input
-    val notification = Notification()
+    var notification = Notification()
 
     @TaskAction
     fun send() {

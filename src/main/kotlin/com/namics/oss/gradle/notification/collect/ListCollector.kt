@@ -11,12 +11,12 @@ import com.namics.oss.gradle.notification.utils.saveProperty
  * @since 22.04.20 11:58
  */
 class ListCollector(
-    override val propertyKey: String,
-    val value: List<String>,
-    override val overwrite: Boolean = false
+    override var propertyKey: String = "listProperty",
+    val value: List<String>? = null,
+    override var overwrite: Boolean = false
 ) : Collector {
     override fun collectProperty(): Property {
-        return ListProperty(propertyKey, value)
+        return ListProperty(propertyKey, requireNotNull(value))
     }
 }
 

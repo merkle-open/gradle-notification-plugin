@@ -11,16 +11,20 @@ import com.namics.oss.gradle.notification.Model
  * @author rgsell, Namics AG
  * @since 01.04.20 17:24
  */
-class SlackSender(override val template: String = SLACK_START, val webhook: String, val channel: String) : Sender {
+class SlackSender(
+    override var template: String = SLACK_START,
+    var webhook: String? = null,
+    var channel: String? = null
+) : Sender {
 
     override fun sendNotification(model: Model) {
         val text = process(model)
         val slackData = getJson(
             SlackData.serializer(),
-            SlackData(channel, text)
+            SlackData(requireNotNull(channel), text)
         )
 
-        Http().postJson(slackData, webhook)
+        Http().postJson(slackData, requireNotNull(webhook))
     }
 }
 

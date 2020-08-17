@@ -13,8 +13,8 @@ import org.gradle.api.logging.Logging
  * @since 30.03.20 16:30
  */
 interface Collector {
-    val propertyKey: String
-    val overwrite: Boolean
+    var propertyKey: String
+    var overwrite: Boolean
 
     /**
      * Collector specific implementation.
@@ -38,6 +38,5 @@ interface Collector {
                 throw e
             }
         }
-
     }
 }

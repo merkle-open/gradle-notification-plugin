@@ -16,18 +16,28 @@ import javax.mail.Message as MailMessage
  * @author rgsell, Namics AG
  * @since 01.04.20 17:24
  */
-class MailSender(override val template: String = MAIL_START, val to: String, val from: String, val subject: String, val smtpHost: String, val smtpPort: String = "25") : Sender {
+class MailSender(
+    override var template: String = MAIL_START,
+    var to: String? = null,
+    var from: String? = null,
+    var subject: String? = null,
+    var smtpHost: String? = null,
+    var smtpPort: String = "25"
+) : Sender {
     override fun sendNotification(model: Model) {
         val text = process(model)
         val properties = System.getProperties()
 
-        properties.setProperty("mail.smtp.host", smtpHost)
+        properties.setProperty("mail.smtp.host", requireNotNull(smtpHost))
         properties.setProperty("mail.smtp.port", smtpPort)
         val session = Session.getDefaultInstance(properties)
         val mimeMessage = MimeMessage(session)
-        mimeMessage.setFrom(InternetAddress(from))
-        mimeMessage.addRecipients(MailMessage.RecipientType.TO, to.split(",").map { email -> InternetAddress(email) }.toTypedArray())
-        mimeMessage.setSubject(subject, "ISO-8859-1")
+        mimeMessage.setFrom(InternetAddress(requireNotNull(from)))
+        mimeMessage.addRecipients(
+            MailMessage.RecipientType.TO,
+            requireNotNull(to).split(",").map { email -> InternetAddress(email) }.toTypedArray()
+        )
+        mimeMessage.setSubject(requireNotNull(subject), "ISO-8859-1")
         mimeMessage.setText(text, "UTF-8")
         Transport.send(mimeMessage)
     }

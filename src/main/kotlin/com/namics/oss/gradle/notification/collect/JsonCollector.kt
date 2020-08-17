@@ -12,14 +12,14 @@ import com.namics.oss.gradle.notification.utils.getPathString
  * @since 08.04.20 17:06
  */
 class JsonCollector(
-    override val propertyKey: String,
-    val uri: String,
-    val jsonPath: String = "git.commit.id.full",
-    val authHeader: String? = null,
-    override val overwrite: Boolean = false
+    override var propertyKey: String = "jsonProperty",
+    var uri: String? = null,
+    var jsonPath: String = "git.commit.id.full",
+    var authHeader: String? = null,
+    override var overwrite: Boolean = false
 ) : Collector {
     override fun collectProperty() : Property {
-        val jsonElement = Http(authHeader).getJson(uri)
+        val jsonElement = Http(authHeader).getJson(requireNotNull(uri))
         val jsonValue = jsonElement.jsonObject.getPathString(jsonPath)
 
         return StringProperty(propertyKey, jsonValue ?: "")

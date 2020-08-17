@@ -13,23 +13,23 @@ import com.namics.oss.gradle.notification.Model
  * @since 01.04.20 17:26
  */
 class NewRelicSender(
-    override val template: String = NEW_RELIC_DESCRIPTION,
-    val changelogTemplate: String = NEW_RELIC_CHANGELOG,
-    val webhook: String,
-    val apiKey: String,
-    val revision: String,
-    val user: String
+    override var template: String = NEW_RELIC_DESCRIPTION,
+    var changelogTemplate: String = NEW_RELIC_CHANGELOG,
+    var webhook: String? = null,
+    var apiKey: String? = null,
+    var revision: String? = null,
+    var user: String? = null
 ) : Sender {
     override fun sendNotification(model: Model) {
         val description = process(template, model)
         val changelog = process(changelogTemplate, model)
         val newRelicData = getJson(
             NewRelicData.serializer(),
-            NewRelicData(Deployment(revision, changelog, user, description))
+            NewRelicData(Deployment(requireNotNull(revision), changelog, requireNotNull(user), description))
         )
 
-        val headers = mapOf("X-Api-Key" to apiKey)
-        Http().postJson(newRelicData, webhook, headers)
+        val headers = mapOf("X-Api-Key" to requireNotNull(apiKey))
+        Http().postJson(newRelicData, requireNotNull(webhook), headers)
     }
 }
 
