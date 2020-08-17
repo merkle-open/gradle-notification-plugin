@@ -36,8 +36,16 @@ open class NotificationExtension(var propertyDir: String = "build/notification_p
         return ListCollector().apply(init)
     }
 
+    fun listCollector(key: String, value: List<String>, overwrite: Boolean = false): Collector {
+        return ListCollector(key, value, overwrite)
+    }
+
     fun stringCollector(init: StringCollector.() -> Unit): Collector {
         return StringCollector().apply(init)
+    }
+
+    fun stringCollector(key: String, value: String, overwrite: Boolean = false): Collector {
+        return StringCollector(key, value, overwrite)
     }
 
     fun ticketCollector(init: TicketCollector.() -> Unit): Collector {
