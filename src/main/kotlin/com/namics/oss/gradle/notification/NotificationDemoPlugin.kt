@@ -15,7 +15,7 @@ class NotificationDemoPlugin : Plugin<Project> {
     override fun apply(project: Project): Unit = project.run {
         project.plugins.apply(NotificationPlugin::class.java)
         val extension = project.extensions.getByName("notify") as NotificationExtension
-        extension.notify{
+        extension.notification{
             taskName = "notifyTask"
             /* define collectors */
             /* used collectors are StringCollector and ListCollector, more implementations: com.namics.oss.gradle.notification.collect */
