@@ -29,6 +29,9 @@ class NotificationPlugin : Plugin<Project> {
         extension.notifications.forEach {
             project.tasks.register(it.taskName, NotifyTask::class) {
                 notification = it
+                if(it.dependsOn!=null){
+                    dependsOn(it.dependsOn)
+                }
             }
         }
     }

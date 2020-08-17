@@ -11,6 +11,7 @@ import com.namics.oss.gradle.notification.send.Sender
  */
 class Notification {
     var taskName: String = "default"
+    var dependsOn: String? = null
     val collectors = mutableListOf<Collector>()
     val senders = mutableListOf<Sender>()
 

@@ -16,7 +16,7 @@ open class NotificationExtension(var propertyDir: String = "build/notification_p
     var throwExceptions: Boolean = false
     var notifications: MutableList<Notification> = mutableListOf()
 
-    fun notify(init: Notification.() -> Unit) {
+    fun notification(init: Notification.() -> Unit) {
         notifications.add(Notification().apply(init))
     }
 
