@@ -18,6 +18,7 @@ class NotificationPlugin : Plugin<Project> {
         val extension = project.extensions.create(
             "notify",
             NotificationExtension::class.java,
+            project,
             project.buildDir.absolutePath + "/notify"
         )
         NotificationConfiguration.initialize(
@@ -26,13 +27,5 @@ class NotificationPlugin : Plugin<Project> {
             propertyPostfix = extension.propertyPostfix,
             throwExceptions = extension.throwExceptions
         )
-        extension.notifications.forEach {
-            project.tasks.register(it.taskName, NotifyTask::class) {
-                notification = it
-                if(it.dependsOn!=null){
-                    dependsOn(it.dependsOn)
-                }
-            }
-        }
     }
 }

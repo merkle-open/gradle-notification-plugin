@@ -2,6 +2,9 @@ package com.namics.oss.gradle.notification
 
 import com.namics.oss.gradle.notification.collect.*
 import com.namics.oss.gradle.notification.send.*
+import com.namics.oss.gradle.notification.tasks.NotifyTask
+import org.gradle.api.Project
+import org.gradle.kotlin.dsl.register
 
 /**
  * NotificationExtension.
@@ -9,7 +12,7 @@ import com.namics.oss.gradle.notification.send.*
  * @author rgsell, Namics AG
  * @since 21.04.20 15:47
  */
-open class NotificationExtension(var propertyDir: String = "build/notification_plugin") {
+open class NotificationExtension(val project: Project, var propertyDir: String = "build/notification_plugin") {
     val CHAT_START = DefaultTemplates.CHAT_START
     val CHAT_DONE = DefaultTemplates.CHAT_DONE
     val SLACK_START = DefaultTemplates.SLACK_START
@@ -22,10 +25,15 @@ open class NotificationExtension(var propertyDir: String = "build/notification_p
     var propertyPrefix: String = "notify_"
     var propertyPostfix: String = ".json"
     var throwExceptions: Boolean = false
-    var notifications: MutableList<Notification> = mutableListOf()
 
     fun notification(init: Notification.() -> Unit) {
-        notifications.add(Notification().apply(init))
+        val notification = Notification().apply(init)
+        project.tasks.register(notification.taskName, NotifyTask::class) {
+            this.notification = notification
+            if (notification.dependsOn != null) {
+                dependsOn(notification.dependsOn)
+            }
+        }
     }
 
     fun gitHistoryCollector(init: GitHistoryCollector.() -> Unit): Collector {
