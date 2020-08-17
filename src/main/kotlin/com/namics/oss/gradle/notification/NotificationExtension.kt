@@ -10,6 +10,15 @@ import com.namics.oss.gradle.notification.send.*
  * @since 21.04.20 15:47
  */
 open class NotificationExtension(var propertyDir: String = "build/notification_plugin") {
+    val CHAT_START = DefaultTemplates.CHAT_START
+    val CHAT_DONE = DefaultTemplates.CHAT_DONE
+    val SLACK_START = DefaultTemplates.SLACK_START
+    val SLACK_DONE = DefaultTemplates.SLACK_DONE
+    val MAIL_START = DefaultTemplates.MAIL_START
+    val MAIL_DONE = DefaultTemplates.MAIL_DONE
+    val NEW_RELIC_CHANGELOG = DefaultTemplates.NEW_RELIC_CHANGELOG
+    val NEW_RELIC_DESCRIPTION = DefaultTemplates.NEW_RELIC_DESCRIPTION
+
     var propertyPrefix: String = "notify_"
     var propertyPostfix: String = ".json"
     var throwExceptions: Boolean = false
