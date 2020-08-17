@@ -2,7 +2,6 @@ package com.namics.oss.gradle.notification
 
 import com.namics.oss.gradle.notification.collect.*
 import com.namics.oss.gradle.notification.send.*
-import org.gradle.internal.impldep.org.eclipse.jgit.api.Git
 
 /**
  * NotificationExtension.
@@ -70,5 +69,9 @@ open class NotificationExtension(var propertyDir: String = "build/notification_p
 
     fun slackSender(init: SlackSender.() -> Unit): Sender {
         return SlackSender().apply(init)
+    }
+
+    fun basicAuthHeader(username: String, password: String): String {
+        return createBasicAuthHeader(username, password)
     }
 }

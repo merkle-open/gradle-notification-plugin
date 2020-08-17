@@ -1,16 +1,13 @@
 package com.namics.oss.gradle.notification
 
 import com.namics.oss.gradle.notification.DefaultTemplates.Companion.CHAT_DONE
-import com.namics.oss.gradle.notification.DefaultTemplates.Companion.CHAT_START
 import com.namics.oss.gradle.notification.collect.*
 import com.namics.oss.gradle.notification.send.ChatSender
 import com.namics.oss.gradle.notification.send.ConsoleSender
 import com.namics.oss.gradle.notification.send.MailSender
-import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.mockserver.client.MockServerClient
-import org.mockserver.integration.ClientAndServer
 import org.mockserver.model.Header
 import org.mockserver.model.HttpRequest
 import org.mockserver.model.HttpResponse
@@ -74,13 +71,13 @@ internal class NotificationTest : AbstractMockHttpMockServer() {
                     propertyKey = "oldRevision",
                     uri = protocol + host + ":" + port + endpoint,
                     jsonPath = "git.commit.id.full",
-                    authHeader = basicAuthHeader("info", "password")
+                    authHeader = createBasicAuthHeader("info", "password")
                 ),
                 JsonCollector(
                     propertyKey = "oldVersion",
                     uri = protocol + host + ":" + port + endpoint,
                     jsonPath = "build.version",
-                    authHeader = basicAuthHeader("info", "password")
+                    authHeader = createBasicAuthHeader("info", "password")
                 ),
                 GitHistoryCollector(
                     propertyKey = "changes",
@@ -112,13 +109,13 @@ internal class NotificationTest : AbstractMockHttpMockServer() {
                     propertyKey = "oldRevision",
                     uri = protocol + host + ":" + port + endpoint,
                     jsonPath = "git.commit.id.full",
-                    authHeader = basicAuthHeader("info", "password")
+                    authHeader = createBasicAuthHeader("info", "password")
                 ),
                 JsonCollector(
                     propertyKey = "oldVersion",
                     uri = protocol + host + ":" + port + endpoint,
                     jsonPath = "build.version",
-                    authHeader = basicAuthHeader("info", "password")
+                    authHeader = createBasicAuthHeader("info", "password")
                 ),
                 GitHistoryCollector(
                     propertyKey = "changes",

@@ -82,7 +82,7 @@ class Http(val authHeader: String? = null) {
     }
 }
 
-fun basicAuthHeader(username: String, password: String): String {
+fun createBasicAuthHeader(username: String, password: String): String {
     val auth = username+":"+password
     val encodedAuth = Base64.getEncoder().encode(auth.toByteArray(ISO_8859_1))
     return "Basic "+ String(encodedAuth)

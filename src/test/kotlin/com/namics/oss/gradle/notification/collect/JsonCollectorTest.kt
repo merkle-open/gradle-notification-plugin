@@ -2,8 +2,7 @@ package com.namics.oss.gradle.notification.collect
 
 import com.namics.oss.gradle.notification.AbstractMockHttpMockServer
 import com.namics.oss.gradle.notification.Property.StringProperty
-import com.namics.oss.gradle.notification.basicAuthHeader
-import com.namics.oss.gradle.notification.collect.JsonCollector
+import com.namics.oss.gradle.notification.createBasicAuthHeader
 import com.namics.oss.gradle.notification.utils.getProperty
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Disabled
@@ -29,7 +28,7 @@ internal class JsonCollectorTest : AbstractMockHttpMockServer() {
             propertyKey = "oldRevision",
             uri = protocol + host + ":" + port + endpoint,
             jsonPath = "git.commit.id.full",
-            authHeader = basicAuthHeader("info", "password"),
+            authHeader = createBasicAuthHeader("info", "password"),
             overwrite = true
         ).collect()
         val property = getProperty("oldRevision") as StringProperty
@@ -44,7 +43,7 @@ internal class JsonCollectorTest : AbstractMockHttpMockServer() {
             propertyKey = "oldVersion",
             uri = protocol + host + ":" + port + endpoint,
             jsonPath = "build.version",
-            authHeader = basicAuthHeader("info", "password"),
+            authHeader = createBasicAuthHeader("info", "password"),
             overwrite = true
         ).collect()
         val property = getProperty("oldVersion") as StringProperty
