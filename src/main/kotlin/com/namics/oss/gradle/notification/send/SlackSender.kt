@@ -1,9 +1,9 @@
 package com.namics.oss.gradle.notification.send
 
-import com.namics.oss.gradle.notification.DefaultTemplates.Companion.SLACK_START
 import kotlinx.serialization.Serializable
 import com.namics.oss.gradle.notification.Http
 import com.namics.oss.gradle.notification.Model
+import com.namics.oss.gradle.notification.NotificationExtension.Companion.SLACK_START
 
 /**
  * Send Slack Messages.
