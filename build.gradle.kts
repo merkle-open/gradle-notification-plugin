@@ -41,6 +41,10 @@ gradlePlugin {
     }
 }
 
+jgitver {
+    useDistance = false
+}
+
 pluginBundle {
     website = "https://github.com/namics/gradle-notification-plugin"
     vcsUrl = "https://github.com/namics/gradle-notification-plugin"

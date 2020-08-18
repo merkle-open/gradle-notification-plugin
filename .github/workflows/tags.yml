@@ -15,10 +15,8 @@ jobs:
       - uses: actions/setup-java@v1
         with:
           java-version: 11
-      - run: git status
       - run: chmod +x gradlew
-      - run: ./gradlew publishPlugins --info --stacktrace -Dgradle.publish.key=${GRADLE_PUBLISH_KEY} -Dgradle.publish.secret=${GRADLE_PUBLISH_SECRET} -Djgitver.branch=master
+      - run: ./gradlew publishPlugins --info --stacktrace -Dgradle.publish.key=${GRADLE_PUBLISH_KEY} -Dgradle.publish.secret=${GRADLE_PUBLISH_SECRET}
         env:
           GRADLE_PUBLISH_KEY: ${{ secrets.GRADLE_PUBLISH_KEY }}
           GRADLE_PUBLISH_SECRET: ${{ secrets.GRADLE_PUBLISH_SECRET }}
-      - run: git status
