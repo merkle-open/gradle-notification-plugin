@@ -7,7 +7,7 @@ plugins {
     `kotlin-dsl`
     id("com.gradle.plugin-publish") version "0.11.0"
     `java-gradle-plugin`
-    id("fr.brouillard.oss.gradle.jgitver") version "0.10.0-rc01"
+    id("fr.brouillard.oss.gradle.jgitver") version "0.10.0-rc03"
     id("com.github.ben-manes.versions") version "0.27.0"
 }
 
