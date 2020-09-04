@@ -28,6 +28,7 @@ internal class JiraVersionCollectorTest : AbstractMockHttpMockServer() {
         )
         val collector = JiraVersionCollector(
             host = getTestProperty("collector.jiraversion.host"),
+            project = getTestProperty("collector.jiraversion.project"),
             version = getTestProperty("collector.jiraversion.version"),
             authHeader = authHeader,
             overwrite = true

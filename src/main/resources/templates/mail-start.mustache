@@ -13,6 +13,6 @@ https://{{jiraUrl}}/issues/?jql=key%20in%20({{#jiraVersion}}{{#value.value}}{{{v
 Tickets
 {{#jiraVersion}}
 {{#value.value}}
-[{{value.type}}] - https://{{jiraUrl}}/browse/{{value.issueKey}} {{value.summary}}
+[{{value.type}}] - https://{{jiraUrl}}/browse/{{{value.issueKey}}} {{{value.summary}}}
 {{/value.value}}
 {{/jiraVersion}}
