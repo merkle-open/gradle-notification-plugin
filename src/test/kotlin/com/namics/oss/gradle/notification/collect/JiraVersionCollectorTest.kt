@@ -29,7 +29,7 @@ internal class JiraVersionCollectorTest : AbstractMockHttpMockServer() {
         val collector = JiraVersionCollector(
             host = getTestProperty("collector.jiraversion.host"),
             project = getTestProperty("collector.jiraversion.project"),
-            version = getTestProperty("collector.jiraversion.version"),
+            fixVersion = getTestProperty("collector.jiraversion.version"),
             authHeader = authHeader,
             overwrite = true
         )
@@ -44,7 +44,7 @@ internal class JiraVersionCollectorTest : AbstractMockHttpMockServer() {
             host = protocol + host + ":" + port,
             queryString = endpoint,
             authHeader = createBasicAuthHeader("info", "password"),
-            version = "123",
+            fixVersion = "123",
             overwrite = true
         ).collect()
         val property = getProperty("jiraVersion") as Property.JiraVersionProperty
