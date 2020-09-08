@@ -104,6 +104,7 @@ internal class NotificationTest : AbstractMockHttpMockServer() {
                 property("jiraUrl", "jira.com"),
                 property("version", "0.1.0"),
                 property("branch", "develop"),
+                property("customText", "\r\nCustom Text\r\n"),
                 property("environmentUrl", "https://github.com/namics/gradle-notification-plugin"),
                 JsonCollector(
                     propertyKey = "oldRevision",
