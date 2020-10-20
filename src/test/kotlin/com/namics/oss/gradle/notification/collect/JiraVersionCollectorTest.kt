@@ -2,6 +2,7 @@ package com.namics.oss.gradle.notification.collect
 
 import com.namics.oss.gradle.notification.*
 import com.namics.oss.gradle.notification.utils.getProperty
+import org.gradle.api.Project
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
@@ -19,18 +20,18 @@ import org.mockserver.model.HttpResponse
  */
 @Disabled("for manual testing")
 internal class JiraVersionCollectorTest : AbstractMockHttpMockServer() {
-
     @Test
     fun collect() {
-        val authHeader = createBasicAuthHeader(
+        val test = createBasicAuthHeader(
             getTestProperty("collector.jiraversion.user"),
             getTestProperty("collector.jiraversion.password")
         )
-        val collector = JiraVersionCollector(
+        val project = getTestProperty("collector.jiraversion.project")
+        val fixVersion = getTestProperty("collector.jiraversion.version")
+        val collector = JiraVersionCollector (
             host = getTestProperty("collector.jiraversion.host"),
-            project = getTestProperty("collector.jiraversion.project"),
-            fixVersion = getTestProperty("collector.jiraversion.version"),
-            authHeader = authHeader,
+            jql = "project=$project+AND+fixVersion=$fixVersion",
+            authHeader = test,
             overwrite = true
         )
         collector.collect()
@@ -44,7 +45,6 @@ internal class JiraVersionCollectorTest : AbstractMockHttpMockServer() {
             host = protocol + host + ":" + port,
             queryString = endpoint,
             authHeader = createBasicAuthHeader("info", "password"),
-            fixVersion = "123",
             overwrite = true
         ).collect()
         val property = getProperty("jiraVersion") as Property.JiraVersionProperty

@@ -9,10 +9,9 @@ import com.namics.oss.gradle.notification.utils.getPathString
 class JiraVersionCollector(
     override var propertyKey: String = "jiraVersion",
     var host: String? = null,
-    var project: String? = null,
-    var fixVersion: String? = null,
     var authHeader: String? = null,
-    var queryString: String = "/rest/api/2/search?jql=project=$project+AND+fixVersion=$fixVersion&fields=id,summary,issuetype",
+    var jql: String? = null,
+    var queryString: String = "/rest/api/2/search?fields=id,summary,issuetype&jql=",
     var issuesPath: String = "issues",
     var keyPath: String = "key",
     var summaryPath: String = "fields.summary",
@@ -21,9 +20,7 @@ class JiraVersionCollector(
 ) : Collector {
 
     override fun collectProperty(): Property {
-        requireNotNull(project)
-        requireNotNull(fixVersion)
-        val uri = requireNotNull(host) + queryString
+        val uri = requireNotNull(host) + queryString + (jql ?: "")
         val jsonElement = Http(authHeader).getJson(uri)
         val jsonIssues = jsonElement.jsonObject.getPathElement(issuesPath)
         val jiraIssues = jsonIssues?.jsonArray?.map {
