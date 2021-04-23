@@ -88,6 +88,10 @@ open class NotificationExtension(val project: Project, var propertyDir: String =
         return SlackSender().apply(init)
     }
 
+    fun teamsSender(init: TeamsSender.() -> Unit): Sender {
+        return TeamsSender().apply(init)
+    }
+
     fun basicAuthHeader(username: String, password: String): String {
         return createBasicAuthHeader(username, password)
     }

@@ -5,6 +5,7 @@ import com.namics.oss.gradle.notification.collect.*
 import com.namics.oss.gradle.notification.send.ChatSender
 import com.namics.oss.gradle.notification.send.ConsoleSender
 import com.namics.oss.gradle.notification.send.MailSender
+import com.namics.oss.gradle.notification.send.TeamsSender
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.mockserver.client.MockServerClient
@@ -45,6 +46,7 @@ internal class NotificationTest : AbstractMockHttpMockServer() {
                         "MailSender",
                         "NewRelicSender",
                         "SlackSender",
+                        "TeamsSender",
                         "... or implement your own com.namics.oss.gradle.notification.send.Sender"
                     )
                 )
@@ -142,6 +144,44 @@ internal class NotificationTest : AbstractMockHttpMockServer() {
             )
         }.collect().send()
     }
+
+    @Test
+    fun sendTeams() {
+        createMockServer()
+        notification {
+            collectors(
+                property("targetEnv", "DEV"),
+                property("gitUrl", "https://github.com/namics/gradle-notification-plugin"),
+                property("jiraUrl", "jira.com"),
+                property("version", "0.1.0"),
+                property("branch", "master"),
+                property("revision", "123123123123123123123"),
+                property("environmentUrl", "https://github.com/namics/gradle-notification-plugin"),
+                JsonCollector(
+                    propertyKey = "oldRevision",
+                    uri = protocol + host + ":" + port + endpoint,
+                    jsonPath = "git.commit.id.full",
+                    authHeader = createBasicAuthHeader("info", "password")
+                ),
+                JsonCollector(
+                    propertyKey = "oldVersion",
+                    uri = protocol + host + ":" + port + endpoint,
+                    jsonPath = "build.version",
+                    authHeader = createBasicAuthHeader("info", "password")
+                ),
+                GitHistoryCollector(
+                    propertyKey = "changes",
+                    rootPath = getTestProperty("collector.git.rootpath")
+                )
+            )
+            senders(
+                TeamsSender(
+                    webhook = getTestProperty("sender.teams.webhook")
+                )
+            )
+        }.collect().send()
+    }
+
 
     fun createMockServer() {
         MockServerClient(host, Integer.valueOf(port)).`when`(

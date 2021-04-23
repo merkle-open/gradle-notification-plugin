@@ -1,0 +1,77 @@
+{
+	"$schema":"http://adaptivecards.io/schemas/adaptive-card.json",
+	"type":"AdaptiveCard",
+	"version":"1.2",
+	"msTeams": {
+      "width": "full"
+    },
+	"body":[
+		{
+			"type": "TextBlock",
+			"size": "Large",
+			"weight": "Bolder",
+			"wrap": true,
+			"text": "Start {{targetEnv}} Deployment"
+		},
+		{
+			"type": "TextBlock",
+			"text": "**Branch:** {{branch}} ({{revision}})"
+		},
+		{
+			"type": "ActionSet",
+			"id": "showButton",
+			"actions": [
+				{
+					"type": "Action.ToggleVisibility",
+					"title": "Show Changes",
+					"targetElements": [ "changes", "showButton", "hideButton" ]
+				}
+			]
+		},
+		{
+			"type": "ActionSet",
+			"id": "hideButton",
+			"isVisible": false,
+			"actions": [
+				{
+					"type": "Action.ToggleVisibility",
+					"title": "Hide Changes",
+					"targetElements": [ "changes", "showButton", "hideButton" ]
+				}
+			]
+		},
+		{
+			"type": "Container",
+			"id": "changes",
+			"isVisible": false,
+			"style": "emphasis",
+			"items": [
+				{
+					"type": "TextBlock",
+					"wrap": true,
+					"text": "{{#changes}}
+					{{{value}}}\r\n
+					{{/changes}}"
+				}
+			]
+		}
+
+	],
+	"actions": [
+        {
+          "type": "Action.OpenUrl",
+          "title": "Show in Jira",
+          "url": "{{jiraUrl}}/issues/?jql=key%20in%20({{#issues}}{{{value}}}{{^last}},{{/last}}{{/issues}})"
+        },
+        {
+          "type": "Action.OpenUrl",
+          "title": "Show in Git",
+          "url": "{{gitUrl}}/commits/{{branch}}"
+        },
+        {
+          "type": "Action.OpenUrl",
+          "title": "Go to {{environmentUrl}} ",
+          "url": "{{environmentUrl}}"
+        }
+	]
+}

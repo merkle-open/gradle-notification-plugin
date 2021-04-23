@@ -70,7 +70,7 @@ TicketCollector(
 )
 ```
 ### Senders
-A Sender sends notifications to different channels with use of stored properties and mustache templating. Every Sender allows a custom template for messages. The plugin implements following senders: (`ChatSender`, `Slacksender`, `MailSender`, `NewRelicSender`). If you need more flexibility you can implement your own Sender by implementing the Sender Interface.
+A Sender sends notifications to different channels with use of stored properties and mustache templating. Every Sender allows a custom template for messages. The plugin implements following senders: (`ChatSender`, `Slacksender`, `TeamsSender`, `MailSender`, `NewRelicSender`). If you need more flexibility you can implement your own Sender by implementing the Sender Interface.
 #### ChatSender
 Sends notifications to Google Chat.
 ```kotlin
@@ -80,11 +80,18 @@ ChatSender(
 )
 ```
 #### SlackSender
-Send notifications to Slack Channels.
+Send notifications to Slack Channel.
 ```kotlin
 SlackSender(
     webhook = slackWebhook,
     channel = "#gradle-notification-plugin"
+)
+```
+#### TeamsSender
+Send notifications to Microsoft Teams Channel.
+```kotlin
+SlackSender(
+    webhook = teamsWebhook
 )
 ```
 #### MailSender

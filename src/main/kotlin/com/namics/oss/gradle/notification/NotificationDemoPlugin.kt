@@ -42,6 +42,7 @@ class NotificationDemoPlugin : Plugin<Project> {
                         "MailSender",
                         "NewRelicSender",
                         "SlackSender",
+                        "TeamsSender",
                         "... or implement your own com.namics.oss.gradle.notification.send.Sender"
                     )
                 ),

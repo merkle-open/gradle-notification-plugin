@@ -12,6 +12,8 @@ class DefaultTemplates {
         const val CHAT_DONE = "templates/chat-done.mustache"
         const val SLACK_START ="templates/slack-start.mustache"
         const val SLACK_DONE = "templates/slack-done.mustache"
+        const val TEAMS_START ="templates/teams-start.mustache"
+        const val TEAMS_DONE = "templates/teams-done.mustache"
         const val MAIL_START = "templates/mail-start.mustache"
         const val MAIL_DONE = "templates/mail-done.mustache"
         const val NEW_RELIC_CHANGELOG ="templates/newrelic-changelog.mustache"
