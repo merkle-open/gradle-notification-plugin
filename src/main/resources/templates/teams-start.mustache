@@ -18,32 +18,8 @@
 			"text": "**Branch:** {{branch}} ({{revision}})"
 		},
 		{
-			"type": "ActionSet",
-			"id": "showButton",
-			"actions": [
-				{
-					"type": "Action.ToggleVisibility",
-					"title": "Show Changes",
-					"targetElements": [ "changes", "showButton", "hideButton" ]
-				}
-			]
-		},
-		{
-			"type": "ActionSet",
-			"id": "hideButton",
-			"isVisible": false,
-			"actions": [
-				{
-					"type": "Action.ToggleVisibility",
-					"title": "Hide Changes",
-					"targetElements": [ "changes", "showButton", "hideButton" ]
-				}
-			]
-		},
-		{
 			"type": "Container",
 			"id": "changes",
-			"isVisible": false,
 			"style": "emphasis",
 			"items": [
 				{
@@ -55,7 +31,6 @@
 				}
 			]
 		}
-
 	],
 	"actions": [
         {
