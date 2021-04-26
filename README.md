@@ -90,7 +90,7 @@ SlackSender(
 #### TeamsSender
 Send notifications to Microsoft Teams Channel.
 ```kotlin
-SlackSender(
+TeamsSender(
     webhook = teamsWebhook
 )
 ```
